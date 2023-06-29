@@ -1,18 +1,4 @@
-.container{
-    display:flex;
-    justify-content: center;
+.active{
+    background-color: aqua;
 }
-
-.mytable{
-    border-collapse: collapse;
-    width: 100%;
-    text-align: left;
-  }
-  .mytable thead tr{
-    min-height: 30px;
-    font-size: 18px;
-  }
-  .mytable tr{
-    text-align: center;
-  }  
   

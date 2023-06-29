@@ -1,34 +1,23 @@
 <div class="container">
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <label for="name">Name:</label>
-    <input type="text" formControlName="name">
-    <label for="age">Age:</label>
-    <input type="text" formControlName="age">
-    <label for="contact">Contact:</label>
-    <input type="text" formControlName="contact">
-    <button [disabled]="isDisable">Submit</button>
-  </form>
+  <div class="row">
+    <div class="col-md-3">
+      <ul class="nav flex-column">
+        <li class="nav-item"><a class="nav-link " routerLink="/" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}"  >Home</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a></li>
+        <li class="nav-item"><a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories</a></li>
+      </ul><br>
+      <div>
+        <button (click)="onLogIn()">Login</button>
+        <button (click)="onLogOut()">Logout</button>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-<table class="mytable">
- <thead> 
-  <tr>
-    <th>NAME</th>
-    <th>AGE</th>
-    <th>CONTACT</th>
-    <th>MODIFICATION</th>
-  </tr>
- </thead>
-<tbody>
-  <tr *ngFor="let item of todo ">
-    <td>{{item.name}}</td>
-    <td>{{item.age}}</td>
-    <td>{{item.contact}}</td>
-    <td>
-      <button (click)="editData(item.id)">Edit</button>
-      <button (click)="updateData(item.id)" >Update</button>
-      <button (click)="deleteData(item.id)">Delete</button>
-    </td>
-  </tr>
-</tbody>
-</table>
