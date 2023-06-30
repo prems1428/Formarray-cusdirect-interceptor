@@ -1,23 +1,92 @@
+<!-- <div highlight>
+  <h1>
+    Using ElementRef (Custom)
+  </h1>
+</div><br>
+<div highlight>
+  <h1>
+  Using Renderer2
+  </h1>
+</div><br>
+
+<div highlight>
+  <h1>
+  Using HostBinding
+  </h1>
+</div><br>
+
+<button (click)="isAvailable=!isAvailable">Toggle</button>
+<div *alternateIf="isAvailable">
+  This is using Custome Structural Directives
+</div> -->
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label>Enter Name :</label>
+          <input type="text"  formControlName="name" class="form-control">
+        </div>
+        <div>
+          <button (click)="newAddressGroup()">Add</button>
+        </div>
+        <div *ngFor="let addressForm of form.get('address')['controls']; let i = index" 
+          [formGroup]="addressForm">Form No {{i}}
+          <div class="form-group">
+             <label>street : </label> 
+            <input type="text" formControlName="street" class="form-control">
+          </div>
+  
+           <div class="form-group">
+              <label>city :  </label> 
+            <input type="text" formControlName="city" class="form-control">
+          </div>
+          <button (click)="deleteAddressGroup(i)" >Delete - {{i}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+result <br>
+
+<pre>
+{{form.value | json}}
+</pre> -->
+
+
+
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
-      <ul class="nav flex-column">
-        <li class="nav-item"><a class="nav-link " routerLink="/" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact:true}"  >Home</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories</a></li>
-      </ul><br>
-      <div>
-        <button (click)="onLogIn()">Login</button>
-        <button (click)="onLogOut()">Logout</button>
-      </div>
-    </div>
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <router-outlet></router-outlet>
+    <div class="col-md-12">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div formGroupName="userData">
+          <div class="form-group">
+            <label>Enter Name :</label>
+            <input type="text"  formControlName="name" class="form-control">
+           </div>
+           <div class="form-group">
+             <label>Enter Email :</label>
+             <input type="text"  formControlName="email" class="form-control">
+           </div>
         </div>
-      </div>
+          <div *ngFor="let gender of genders">
+          <label>
+              <input type="radio" name="gender" [value]="gender" formControlName="gender" />{{gender}}
+          </label>
+           </div>
+           <div formArrayName="hobbies">
+            <div class="my-2">
+                <button type="button" (click)="onAddHobby()" class="btn btn-sm btn-warning">Add Hobby</button>
+            </div>
+                <div class="form-group" *ngFor="let hobby of profileForm.get('hobbies')['controls']; let i = index">
+                <input type="text" class="form-control" [formControlName]="i" />
+            </div>
+        <div>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+        </div>
+      </form> 
     </div>
   </div>
 </div>

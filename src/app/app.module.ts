@@ -4,33 +4,28 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-import { HomeComponent } from './home/home.component';
-import { UsersComponent } from './users/users.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
-import { AuthService } from 'src/Auth-gards/auth.service';
-import { AuthCardService } from 'src/Auth-gards/canActivate.service';
-import { AuthDeacivateService } from 'src/Auth-gards/deactivate-guard.service';
-import { ResolveService } from 'src/Auth-gards/resolve.service';
-import { UserService } from 'src/Auth-gards/user.service';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { customHttpInterceptor } from './interceptor.service';
+import { customDirective } from './highlight.directive';
+import { AlternateDirective } from './alternateIf.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UsersComponent,
-    CategoriesComponent,
-    PageNotFoundComponent
+    customDirective,
+    AlternateDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [AuthService,AuthCardService,AuthDeacivateService,ResolveService,UserService],
+  providers: [ {provide : HTTP_INTERCEPTORS , useClass : customHttpInterceptor , multi : true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
